@@ -1,0 +1,39 @@
+
+header{
+    min-height: 75px;
+    background: #85C342;
+   padding: 40px 40px;
+}
+
+header h1{
+    color: #fff;
+    font-size: 40px;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    font-weight: normal;
+}
+.content{
+    padding-top: 50px;
+}
+
+.table{
+  margin-top: 50px;
+  width: 900px;
+}
+
+.table tr:hover td{
+   background-color: #d4f7ad;
+}
+.table th:hover{
+    color: #85C342;
+    font-weight: bold;
+
+}
+
+.table  th, td{
+padding: 5px 10px;
+min-width: 150px;
+}
+
+.search-query{
+  float: right;
+}
