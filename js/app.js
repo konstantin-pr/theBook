@@ -41,9 +41,7 @@ function ListCtrl($scope, $http, Restangular) {
  }
 
 
-function CreateCtrl($scope, $location, Restangular,$http) {
-$http.defaults.headers.common['X-Parse-Application-Id'] = 'LPohFnTOjNuISjt8xy1PmcAKYRxawebNIMHZrHtP';
-$http.defaults.headers.common['X-Parse-REST-API-Key'] = 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq';
+function CreateCtrl($scope, $location, Restangular) {
 
   $scope.save = function() {
     Restangular.all('Book').post($scope.book).then(function(book) {
@@ -52,10 +50,7 @@ $http.defaults.headers.common['X-Parse-REST-API-Key'] = 'W4sSfi363thgMytTv0z83Cz
   }
 }
 
-function EditCtrl($scope, $location, Restangular, book, $http) {
-$http.defaults.headers.common['X-Parse-Application-Id'] = 'LPohFnTOjNuISjt8xy1PmcAKYRxawebNIMHZrHtP';
-$http.defaults.headers.common['X-Parse-REST-API-Key'] = 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq';
-
+function EditCtrl($scope, $location, Restangular, book) {
 
   var original = book;
   $scope.book = Restangular.copy(original);
