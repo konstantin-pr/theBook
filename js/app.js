@@ -33,16 +33,18 @@ angular.module('Book', ['restangular', 'ngRoute']).
   });
 
 
+
 function ListCtrl($scope, $http, Restangular) {
     $http.defaults.headers.common['X-Parse-Application-Id'] = 'LPohFnTOjNuISjt8xy1PmcAKYRxawebNIMHZrHtP';
     $http.defaults.headers.common['X-Parse-REST-API-Key'] = 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq';
     $scope.books =  Restangular.all("Book").getList().$object;
+    $scope.col = 'name';
+    $scope.sortCol = function(name) { $scope.col = name; };
 
  }
 
 
 function CreateCtrl($scope, $location, Restangular) {
-
   $scope.save = function() {
     Restangular.all('Book').post($scope.book).then(function(book) {
       $location.path('/list');
@@ -51,7 +53,6 @@ function CreateCtrl($scope, $location, Restangular) {
 }
 
 function EditCtrl($scope, $location, Restangular, book) {
-
   var original = book;
   $scope.book = Restangular.copy(original);
 

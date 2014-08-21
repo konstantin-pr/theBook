@@ -25,24 +25,24 @@
       </div>
   </header>
     <div class="container content" data-ng-app="Book">
-    <div data-ng-view></div>
+        <div data-ng-view></div>
 
 
     <script type="text/ng-template" id="list.html">
        <div class="row">
            <input type="text" data-ng-model="search" class="search-query" placeholder="Search">
-           <table  class="table" data-ng-repeat="innerArray in books">
+           <table  data-mysort class="table" data-ng-repeat="innerArray in books">
                <thead>
                <tr>
-                   <th>Book</th>
-                   <th>Author</th>
-                   <th>Date</th>
+                   <th data-ng-click="sortCol('name')">Book</th>
+                   <th data-ng-click="sortCol('author')">Author</th>
+                   <th data-ng-click="sortCol('date')">Date</th>
                    <th><a href="#/new"><i class="icon-plus-sign"></i></a></th>
                </tr>
                </thead>
                <tbody>
 
-               <tr data-ng-repeat="book in innerArray | filter:search | orderBy:'name'"  >
+               <tr data-ng-repeat="book in innerArray | filter:search | orderBy:col  "  >
 
                    <td>{{book.name}}</td>
                    <td>{{book.author}}</td>

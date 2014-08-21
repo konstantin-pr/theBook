@@ -26,6 +26,7 @@ header h1{
 .table th:hover{
     color: #85C342;
     font-weight: bold;
+    cursor: pointer;
 
 }
 
