@@ -27,7 +27,7 @@
     <div class="container content" data-ng-app="Book">
         <div data-ng-view></div>
 
-
+     <!-- view template list.html -->
     <script type="text/ng-template" id="list.html">
        <div class="row">
            <input type="text" data-ng-model="search" class="search-query" placeholder="Search">
@@ -59,7 +59,7 @@
 
 
 
-
+    <!-- view template detail.html -->
     <script type="text/ng-template" id="detail.html">
       <form name="myForm">
         <div class="control-group" data-ng-class="{error: myForm.name.$invalid}">

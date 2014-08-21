@@ -15,15 +15,19 @@ angular.module('Book', ['restangular', 'ngRoute']).
           }
         }
       }).
-      when('/new', {controller:CreateCtrl, templateUrl:'detail.html'}).
+      when('/new', {controller:CreateCtrl,
+            templateUrl:'detail.html'
+      }).
       otherwise({redirectTo:'/'});
-         RestangularProvider.setBaseUrl('https://api.parse.com/1/classes/' );
-         RestangularProvider.setDefaultRequestParams({ apiKey: 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq'});
-          RestangularProvider.setRestangularFields({
-           id: 'objectId'
-      });
-      RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
 
+
+     RestangularProvider.setBaseUrl('https://api.parse.com/1/classes/' );
+     RestangularProvider.setDefaultRequestParams({ apiKey: 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq'});
+     RestangularProvider.setRestangularFields({
+       id: 'objectId'
+      });
+
+      RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
         if (operation === 'put') {
           elem._id = undefined;
           return elem;
