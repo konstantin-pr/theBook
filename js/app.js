@@ -1,10 +1,9 @@
-angular.module('Book', ['restangular', 'ngRoute']).
-  config(function($routeProvider, RestangularProvider) {
+angular.module('theBook', ['restangular', 'ngRoute']).
+  config(function($routeProvider, $httpProvider, RestangularProvider) {
     $routeProvider.
       when('/', {
         controller:ListCtrl, 
         templateUrl:'list.html'
-
       }).
       when('/edit/:objectId', {
         controller:EditCtrl,
@@ -20,6 +19,8 @@ angular.module('Book', ['restangular', 'ngRoute']).
       }).
       otherwise({redirectTo:'/'});
 
+     $httpProvider.defaults.headers.common['X-Parse-Application-Id'] = 'LPohFnTOjNuISjt8xy1PmcAKYRxawebNIMHZrHtP';
+     $httpProvider.defaults.headers.common['X-Parse-REST-API-Key'] = 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq';
 
      RestangularProvider.setBaseUrl('https://api.parse.com/1/classes/' );
      RestangularProvider.setDefaultRequestParams({ apiKey: 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq'});
@@ -27,7 +28,7 @@ angular.module('Book', ['restangular', 'ngRoute']).
        id: 'objectId'
       });
 
-      RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
+      RestangularProvider.setRequestInterceptor(function(elem, operation) {
         if (operation === 'put') {
           elem._id = undefined;
           return elem;
@@ -36,17 +37,12 @@ angular.module('Book', ['restangular', 'ngRoute']).
       })
   });
 
-
-
-function ListCtrl($scope, $http, Restangular) {
-    $http.defaults.headers.common['X-Parse-Application-Id'] = 'LPohFnTOjNuISjt8xy1PmcAKYRxawebNIMHZrHtP';
-    $http.defaults.headers.common['X-Parse-REST-API-Key'] = 'W4sSfi363thgMytTv0z83CzSdmWOzgHcs2Ws1Ywq';
+function ListCtrl($scope, Restangular) {
     $scope.books =  Restangular.all("Book").getList().$object;
     $scope.col = 'name';
     $scope.sortCol = function(name) { $scope.col = name; };
 
  }
-
 
 function CreateCtrl($scope, $location, Restangular) {
   $scope.save = function() {
